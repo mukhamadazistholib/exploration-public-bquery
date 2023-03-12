@@ -88,7 +88,6 @@ LIMIT 10
 
 7. Identifying which records are duplicated across all columns.
 ```sql
-#standardSQL
 SELECT COUNT(*) as num_duplicate_rows, * FROM
 `data-to-insights.ecommerce.all_sessions_raw`
 GROUP BY
@@ -122,7 +121,6 @@ HAVING row_count > 1
 
 9. Calculate the total views by counting product_views and the number of unique visitors by counting `fullVisitorID`.
 ```sql
-#standardSQL
 SELECT
   COUNT(*) AS product_views,
   COUNT(DISTINCT fullVisitorId) AS unique_visitors
@@ -132,7 +130,6 @@ FROM `data-to-insights.ecommerce.all_sessions`;
 
 10. Calculate the total unique visitors `(fullVisitorID)` by the referring site (channelGrouping).
 ```sql
-#standardSQL
 SELECT
   COUNT(DISTINCT fullVisitorId) AS unique_visitors,
   channelGrouping
@@ -144,7 +141,6 @@ ORDER BY channelGrouping DESC;
 
 11. Show the list  of all the unique product names `(v2ProductName)` alphabetically.
 ```sql
-#standardSQL
 SELECT
   (v2ProductName) AS ProductName
 FROM `data-to-insights.ecommerce.all_sessions`
@@ -155,7 +151,6 @@ ORDER BY ProductName
 
 13. Show the list of most views product `(product_views)` from all visitors (including people who have viewed the same product more than once).
 ```sql
-#standardSQL
 SELECT
   COUNT(*) AS product_views,
   (v2ProductName) AS ProductName
@@ -190,7 +185,6 @@ LIMIT 5
 
 15. The query to include the total number of distinct products ordered and the total number of total units ordered (productQuantity).
 ```sql
-#standardSQL
 SELECT
   COUNT(*) AS product_views,
   COUNT(productQuantity) AS orders,
@@ -206,7 +200,6 @@ LIMIT 5;
 
 16. The query to include the average amount of product per order (total number of units ordered/total number of orders, or `SUM(productQuantity)/COUNT(productQuantity))`.
 ```sql
-#standardSQL
 SELECT
   COUNT(*) AS product_views,
   COUNT(productQuantity) AS orders,
